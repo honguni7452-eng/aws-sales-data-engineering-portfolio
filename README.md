@@ -52,6 +52,20 @@ Glue Job의 성공 여부만으로 정확성을 판단하지 않았습니다. Si
 
 Iceberg 테이블 교체 과정에서 기존 메타데이터를 읽는 객체 권한이 부족해 작업이 실패했습니다. 실패 경로와 필요한 객체 작업을 확인해 해당 테이블 경로의 권한만 보완한 뒤 전체 작업과 Athena 검증을 다시 완료했습니다.
 
+## 주요 검증 결과
+
+| Lab2 CSV 조회 | Lab2 Parquet 조회 |
+| --- | --- |
+| ![Lab2 CSV 조회 결과](Lab2/evidence/lab2_csv_performance.png) | ![Lab2 Parquet 조회 결과](Lab2/evidence/lab2_parquet_performance.png) |
+
+동일한 분석 결과를 기준으로 저장 형식과 날짜 파티션 적용 전후의 Athena 스캔량을 비교했습니다.
+
+| Lab3 Silver 조회 | Lab3 Gold 집계 |
+| --- | --- |
+| ![Lab3 Silver Athena 결과](Lab3/evidence/lab3_silver_athena_result.png) | ![Lab3 Gold Athena 결과](Lab3/evidence/lab3_gold_athena_result.png) |
+
+정제된 Silver와 분석용 Gold를 Athena에서 각각 조회해 계층별 결과를 확인했습니다. 세부 SQL과 추가 증빙은 각 Lab README에서 확인할 수 있습니다.
+
 ## 저장소 구조
 
 ```text
