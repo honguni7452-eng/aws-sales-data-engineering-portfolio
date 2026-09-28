@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
+  <title id="title">AWS 서버리스 데이터 엔지니어링 아키텍처</title>
+  <desc id="desc">Python 생성 CSV가 Amazon S3, AWS Glue ETL, 파티션 Parquet, Glue 데이터 카탈로그, Athena 엔진 v3, Apache Iceberg 실버·골드를 거쳐 포트폴리오 증빙으로 이어지는 서버리스 파이프라인입니다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5f6b7a"/>
+    </marker>
+    <marker id="orange-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e76f00"/>
+    </marker>
+    <marker id="purple-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b3fa0"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1f2937" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      text { font-family: "Malgun Gothic", "Noto Sans KR", Inter, "Segoe UI", Arial, sans-serif; fill: #16191f; }
+      .title { font-size: 30px; font-weight: 700; }
+      .subtitle { font-size: 17px; fill: #5f6b7a; }
+      .group-title { font-size: 19px; font-weight: 700; }
+      .box-title { font-size: 17px; font-weight: 700; }
+      .metric { font-size: 24px; font-weight: 700; }
+      .body { font-size: 14px; fill: #374151; }
+      .small { font-size: 12px; fill: #5f6b7a; }
+      .edge-label { font-size: 12px; font-weight: 600; fill: #5f6b7a; paint-order: stroke; stroke: #fff; stroke-width: 5px; stroke-linejoin: round; }
+      .node { filter: url(#shadow); }
+    </style>
+  </defs>
+
+  <rect width="1500" height="900" fill="#ffffff"/>
+  <text x="750" y="48" text-anchor="middle" class="title">AWS 서버리스 데이터 엔지니어링 아키텍처</text>
+  <text x="750" y="78" text-anchor="middle" class="subtitle">원본 CSV → 파티션 Parquet → Apache Iceberg 실버 · 골드</text>
+
+  <g class="node">
+    <rect x="35" y="345" width="190" height="140" rx="14" fill="#f7f8f8" stroke="#879596" stroke-width="2"/>
+    <circle cx="130" cy="378" r="18" fill="#232f3e"/>
+    <text x="130" y="384" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">PY</text>
+    <text x="130" y="417" text-anchor="middle" class="box-title">Python 데이터 생성기</text>
+    <text x="130" y="444" text-anchor="middle" class="body">합성 판매 데이터 CSV</text>
+    <text x="130" y="466" text-anchor="middle" class="small">정상 10,000 + 오류·중복 1,000</text>
+  </g>
+
+  <g>
+    <rect x="270" y="205" width="830" height="450" rx="18" fill="#fbfdf9" stroke="#3f8624" stroke-width="2"/>
+    <rect x="270" y="205" width="830" height="52" rx="18" fill="#eaf4e4"/>
+    <rect x="270" y="239" width="830" height="18" fill="#eaf4e4"/>
+    <text x="295" y="238" class="group-title" fill="#1b4d0f">Amazon S3 데이터 레이크 / 레이크하우스</text>
+  </g>
+
+  <g class="node">
+    <rect x="305" y="305" width="210" height="235" rx="13" fill="#eaf4e4" stroke="#3f8624" stroke-width="2"/>
+    <path d="M382 342h56v40c0 10-56 10-56 0zm0 0c0 10 56 10 56 0" fill="#3f8624" opacity="0.92"/>
+    <text x="410" y="413" text-anchor="middle" class="box-title">원본 · CSV</text>
+    <text x="410" y="446" text-anchor="middle" class="metric">11,000행</text>
+    <text x="410" y="481" text-anchor="middle" class="body">스키마 온 리드</text>
+    <text x="410" y="504" text-anchor="middle" class="body">문자열 변환 · 전체 파일 스캔</text>
+  </g>
+
+  <g class="node">
+    <rect x="570" y="305" width="220" height="235" rx="13" fill="#e8f3fb" stroke="#2e73b8" stroke-width="2"/>
+    <path d="M652 342h56v40c0 10-56 10-56 0zm0 0c0 10 56 10 56 0" fill="#2e73b8" opacity="0.92"/>
+    <text x="680" y="413" text-anchor="middle" class="box-title">정제 · PARQUET</text>
+    <text x="680" y="446" text-anchor="middle" class="metric">10,000행</text>
+    <text x="680" y="481" text-anchor="middle" class="body">Snappy 압축 · 타입 적용</text>
+    <text x="680" y="504" text-anchor="middle" class="body">order_date 파티션</text>
+  </g>
+
+  <g>
+    <rect x="835" y="280" width="225" height="330" rx="14" fill="#faf8fe" stroke="#8c4fff" stroke-width="2"/>
+    <rect x="835" y="280" width="225" height="66" rx="14" fill="#f1ecfa"/>
+    <rect x="835" y="329" width="225" height="17" fill="#f1ecfa"/>
+    <text x="947" y="308" text-anchor="middle" class="box-title" font-size="15" fill="#4d2a7a">APACHE ICEBERG 레이크하우스</text>
+    <text x="947" y="331" text-anchor="middle" class="small">ACID · 스냅샷 · 버전 트래블</text>
+    <g class="node">
+      <rect x="858" y="370" width="179" height="102" rx="11" fill="#f1ecfa" stroke="#8c4fff" stroke-width="2"/>
+      <text x="947" y="401" text-anchor="middle" class="box-title">실버</text>
+      <text x="947" y="431" text-anchor="middle" class="metric" font-size="21">5,488건</text>
+      <text x="947" y="455" text-anchor="middle" class="small">고정 스냅샷 · 중복 제거</text>
+    </g>
+    <g class="node">
+      <rect x="858" y="496" width="179" height="88" rx="11" fill="#fff3d6" stroke="#e7a100" stroke-width="2"/>
+      <text x="947" y="526" text-anchor="middle" class="box-title">골드</text>
+      <text x="947" y="556" text-anchor="middle" class="metric" font-size="21">997명</text>
+      <text x="947" y="577" text-anchor="middle" class="small">비즈니스용 고객 요약</text>
+    </g>
+  </g>
+
+  <g class="node">
+    <rect x="430" y="105" width="275" height="95" rx="14" fill="#fff1e8" stroke="#e76f00" stroke-width="2"/>
+    <circle cx="464" cy="139" r="17" fill="#e76f00"/>
+    <path d="M455 139h18M464 130v18" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <text x="568" y="137" text-anchor="middle" class="box-title">AWS Glue ETL · Spark</text>
+    <text x="568" y="163" text-anchor="middle" class="body">타입 변환 · 검증 · 중복 제거</text>
+    <text x="568" y="183" text-anchor="middle" class="small">파티션 Parquet 저장</text>
+  </g>
+
+  <g class="node">
+    <rect x="760" y="105" width="290" height="95" rx="14" fill="#fff1e8" stroke="#e76f00" stroke-width="2"/>
+    <circle cx="796" cy="139" r="17" fill="#e76f00"/>
+    <path d="M788 132h16v14h-16zM792 128h8" fill="none" stroke="#fff" stroke-width="2"/>
+    <text x="925" y="137" text-anchor="middle" class="box-title" font-size="15">AWS Glue 데이터 카탈로그</text>
+    <text x="910" y="163" text-anchor="middle" class="body">크롤러 · 스키마 · 파티션</text>
+    <text x="910" y="183" text-anchor="middle" class="small">sales_db · commerce_lakehouse</text>
+  </g>
+
+  <g class="node">
+    <rect x="550" y="700" width="340" height="110" rx="15" fill="#eee8f8" stroke="#5a2d82" stroke-width="2"/>
+    <circle cx="590" cy="746" r="20" fill="#5a2d82"/>
+    <text x="590" y="753" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">A</text>
+    <text x="725" y="739" text-anchor="middle" class="box-title">Amazon Athena · 엔진 v3</text>
+    <text x="725" y="767" text-anchor="middle" class="body">서버리스 SQL · 파티션 프루닝</text>
+    <text x="725" y="790" text-anchor="middle" class="small">Iceberg DML · 버전 트래블</text>
+  </g>
+
+  <g class="node">
+    <rect x="1170" y="330" width="275" height="215" rx="15" fill="#f7f8f8" stroke="#879596" stroke-width="2"/>
+    <text x="1307" y="370" text-anchor="middle" class="box-title">포트폴리오 증빙</text>
+    <text x="1307" y="405" text-anchor="middle" class="body">원본 · 실버 · 골드 CSV</text>
+    <text x="1307" y="431" text-anchor="middle" class="body">Athena 결과 화면</text>
+    <line x1="1208" y1="454" x2="1406" y2="454" stroke="#d5dbdb"/>
+    <text x="1307" y="488" text-anchor="middle" class="box-title">스캔 데이터 99.83% 절감</text>
+    <text x="1307" y="518" text-anchor="middle" class="body">327.09 KB → 0.57 KB</text>
+  </g>
+
+  <path d="M225 415H305" fill="none" stroke="#5f6b7a" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="265" y="400" text-anchor="middle" class="edge-label">업로드</text>
+
+  <path d="M410 305V278H250V152H430" fill="none" stroke="#e76f00" stroke-width="2.5" marker-end="url(#orange-arrow)"/>
+  <text x="330" y="272" text-anchor="middle" class="edge-label">읽기</text>
+  <path d="M615 200V245H680V305" fill="none" stroke="#e76f00" stroke-width="2.5" marker-end="url(#orange-arrow)"/>
+  <text x="653" y="238" text-anchor="middle" class="edge-label">저장</text>
+
+  <path d="M470 305V270H825V200" fill="none" stroke="#e76f00" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#orange-arrow)"/>
+  <text x="638" y="265" text-anchor="middle" class="edge-label">크롤링</text>
+  <path d="M735 305V245H900V200" fill="none" stroke="#e76f00" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#orange-arrow)"/>
+
+  <path d="M1020 200H1090V670H860V700" fill="none" stroke="#6b3fa0" stroke-width="2.5" marker-end="url(#purple-arrow)"/>
+  <text x="1050" y="663" text-anchor="middle" class="edge-label">메타데이터</text>
+  <path d="M680 540V700" fill="none" stroke="#2e73b8" stroke-width="2.5" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="694" y="625" class="edge-label">SQL 스캔</text>
+  <path d="M835 421H810V675H850V700" fill="none" stroke="#6b3fa0" stroke-width="2.5" marker-start="url(#purple-arrow)" marker-end="url(#purple-arrow)"/>
+  <text x="823" y="653" class="edge-label">생성 / 조회</text>
+  <path d="M947 472V496" fill="none" stroke="#6b3fa0" stroke-width="2.5" marker-end="url(#purple-arrow)"/>
+  <text x="986" y="489" class="edge-label">집계</text>
+  <path d="M890 755H1128V438H1170" fill="none" stroke="#5f6b7a" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="1104" y="424" text-anchor="middle" class="edge-label">결과 다운로드</text>
+
+  <text x="750" y="858" text-anchor="middle" class="small">2026-08-25 실측 · 쿼리 결과 재사용 비활성화 · 동일 일 매출: 30,218.81</text>
+</svg>

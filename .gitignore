@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+*.pem
+*.key
+credentials*
+*.csv
+*.parquet
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+~$*.docx
