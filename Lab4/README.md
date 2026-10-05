@@ -52,7 +52,7 @@ Gold 테이블을 `createOrReplace()`로 저장할 때 기존 Iceberg 메타데�
 
 ![Iceberg 메타데이터 읽기 권한 오류](evidence/lab4_iceberg_permission_error.png)
 
-계정 ID, 역할, S3 경로와 요청 ID는 가린 화면입니다. 실패 후 권한을 보완해 같은 작업을 다시 실행했습니다.
+실행 목록은 최신순이며, 맨 위(09/11 17:10)가 권한 오류로 실패한 실행입니다. 이 화면은 권한을 보완하기 전 시점이고, 보완 후 같은 작업을 다시 실행해 성공과 Athena 대조 결과를 확인했습니다. 계정 ID, 역할, S3 경로와 요청 ID는 가렸습니다.
 
 공개용 권한 예시는 [iam/GlueLab4IcebergS3Access.example.json](iam/GlueLab4IcebergS3Access.example.json)에 있습니다.
 

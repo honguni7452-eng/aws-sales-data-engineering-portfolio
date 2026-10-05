@@ -65,6 +65,8 @@ CSV 스캔량 327.09 KB · 2026-07-01 매출 30218.81
 
 CSV 327.09 KB → Parquet 0.57 KB · 동일 날짜(2026-07-01)·동일 매출(30218.81)
 
+※ Lab2·Lab3 화면은 필요한 부분만 잘라 재배치했으며, 수치는 원본 Athena 화면과 같습니다.
+
 동일한 분석 결과를 기준으로 저장 형식과 날짜 파티션 적용 전후의 Athena 스캔량을 비교했습니다.
 
 ![Lab3 Silver Athena 결과](Lab3/evidence/lab3_silver_athena_result.png)
