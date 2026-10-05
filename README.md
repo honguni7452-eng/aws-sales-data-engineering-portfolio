@@ -3,6 +3,8 @@
 **정홍섭** · 개인 학습 프로젝트(학습·포트폴리오용) · 2026.07 ~ 2026.09  
 Python · Pandas · SQL · PySpark · Amazon S3 · AWS Glue · Amazon Athena · Apache Iceberg
 
+> 실습은 2026년 7~9월 비공개 저장소에서 진행했고, AWS 계정·버킷 정보를 제거한 공개용 정리본을 2026-09-28에 게시했습니다.
+
 학습용으로 생성한 판매 데이터를 이용해 데이터 생성·품질 검사부터 AWS 기반 ETL, SQL 검증, Apache Iceberg Lakehouse까지 구현한 개인 프로젝트입니다.
 
 이 저장소는 작업 순서를 나열하기보다 다음 역량을 코드와 검증 근거로 보여주는 데 목적이 있습니다.
