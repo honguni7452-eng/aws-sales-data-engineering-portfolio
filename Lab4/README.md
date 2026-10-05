@@ -50,6 +50,10 @@ Spark는 변환과 저장을 담당하고, Athena는 생성된 Iceberg 테이블
 
 Gold 테이블을 `createOrReplace()`로 저장할 때 기존 Iceberg 메타데이터를 읽는 객체 권한이 부족해 작업이 실패했습니다. 실패 경로와 필요한 객체 작업을 확인해 권한 범위를 해당 테이블 경로로 제한해 보완했습니다. 이후 전체 작업과 Athena 대조가 성공했습니다.
 
+![Iceberg 메타데이터 읽기 권한 오류](evidence/lab4_iceberg_permission_error.png)
+
+계정 ID, 역할, S3 경로와 요청 ID는 가린 화면입니다. 실패 후 권한을 보완해 같은 작업을 다시 실행했습니다.
+
 공개용 권한 예시는 [iam/GlueLab4IcebergS3Access.example.json](iam/GlueLab4IcebergS3Access.example.json)에 있습니다.
 
 ## 실행 파일

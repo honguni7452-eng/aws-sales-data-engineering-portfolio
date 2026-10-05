@@ -1,5 +1,8 @@
 # AWS Sales Data Engineering Portfolio
 
+**정홍섭** · 개인 학습 프로젝트(학습·포트폴리오용) · 2026.07 ~ 2026.09  
+Python · Pandas · SQL · PySpark · Amazon S3 · AWS Glue · Amazon Athena · Apache Iceberg
+
 학습용으로 생성한 판매 데이터를 이용해 데이터 생성·품질 검사부터 AWS 기반 ETL, SQL 검증, Apache Iceberg Lakehouse까지 구현한 개인 프로젝트입니다.
 
 이 저장소는 작업 순서를 나열하기보다 다음 역량을 코드와 검증 근거로 보여주는 데 목적이 있습니다.
@@ -42,7 +45,7 @@ CSV와 날짜 기준으로 파티셔닝한 Parquet에서 동일한 일 매출 �
 
 ### 실행일 의존성을 고정 기준일과 Snapshot으로 보완
 
-실행일을 기준으로 미래 데이터를 제거하면 재실행 시 결과가 달라질 수 있음을 확인했습니다. 이후 기준일과 Iceberg Snapshot을 함께 고정하고, `FOR VERSION AS OF` 결과로 Silver를 다시 구성한 뒤 Gold를 재생성해 결과를 대조했습니다.
+Lab3에서 최근 90일 조건의 기준을 `CURRENT_TIMESTAMP`로 두었더니, 다시 적재한 Silver가 5,488건에서 5,246건으로 줄었습니다. 오류 없이 결과만 달라진 경우였습니다. 실행일을 기준으로 미래 데이터를 제거하는 조건도 같은 이유로 재실행 시 결과가 달라질 수 있습니다. 이후 기준일(`2026-08-18`)과 Iceberg Snapshot을 함께 고정하고, `FOR VERSION AS OF` 결과로 Silver 5,488건을 다시 구성한 뒤 Gold 고객 요약 997건을 재생성해 결과를 대조했습니다.
 
 ### Spark 결과를 Athena에서 독립적으로 검증
 

@@ -10,4 +10,6 @@
 | Daily Gold | 전 날짜의 누락·추가 행, 주문 수·매출 비교 | 불일치 0건 |
 | 재실행 | 같은 입력으로 Glue Job 재실행 | 결과 유지 |
 
+권한 오류 화면: [lab4_iceberg_permission_error.png](lab4_iceberg_permission_error.png) (식별 정보 가림)
+
 검증 SQL은 [../sql/](../sql/)에서 확인할 수 있습니다. 공개용 화면을 추가할 때는 계정 ID, 역할 ARN, 실제 S3 경로, 객체 키와 요청 식별자를 가린 뒤 올립니다.
