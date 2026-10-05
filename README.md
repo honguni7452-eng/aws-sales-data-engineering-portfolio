@@ -57,15 +57,23 @@ Iceberg 테이블 교체 과정에서 기존 메타데이터를 읽는 객체 �
 
 ## 주요 검증 결과
 
-| Lab2 CSV 조회 | Lab2 Parquet 조회 |
-| --- | --- |
-| ![Lab2 CSV 조회 결과](Lab2/evidence/lab2_csv_performance.png) | ![Lab2 Parquet 조회 결과](Lab2/evidence/lab2_parquet_performance.png) |
+![Lab2 CSV 조회 결과](Lab2/evidence/lab2_csv_performance.png)
+
+CSV 스캔량 327.09 KB · 2026-07-01 매출 30218.81
+
+![Lab2 Parquet 조회 결과](Lab2/evidence/lab2_parquet_performance.png)
+
+CSV 327.09 KB → Parquet 0.57 KB · 동일 날짜(2026-07-01)·동일 매출(30218.81)
 
 동일한 분석 결과를 기준으로 저장 형식과 날짜 파티션 적용 전후의 Athena 스캔량을 비교했습니다.
 
-| Lab3 Silver 조회 | Lab3 Gold 집계 |
-| --- | --- |
-| ![Lab3 Silver Athena 결과](Lab3/evidence/lab3_silver_athena_result.png) | ![Lab3 Gold Athena 결과](Lab3/evidence/lab3_gold_athena_result.png) |
+![Lab3 Silver Athena 결과](Lab3/evidence/lab3_silver_athena_result.png)
+
+Snapshot 8329354579635974189 조회 · Silver 결과 5,488행
+
+![Lab3 Gold Athena 결과](Lab3/evidence/lab3_gold_athena_result.png)
+
+고객별 Gold 집계 결과 997행
 
 정제된 Silver와 분석용 Gold를 Athena에서 각각 조회해 계층별 결과를 확인했습니다. 세부 SQL과 추가 증빙은 각 Lab README에서 확인할 수 있습니다.
 
